@@ -1,496 +1,114 @@
-import { ThemeToggle } from "@/components/theme-toggle";
-import { GithubGraph } from "@/components/GithubGraph";
-import { CurrentTime } from "@/components/CurrentTime";
-import { ProjectsGrid } from "@/components/ProjectsGrid";
-import { ExperienceList } from "@/components/ExperienceList";
-import { OpenSourceContributions } from "@/components/OpenSourceContributions";
-import { BlogList } from "@/components/BlogList";
-import { Highlights } from "@/components/Highlights";
-import { FooterBackground } from "@/components/FooterBackground";
-import { RightNavbar } from "@/components/RightNavbar";
-import { CommandMenu } from "@/components/command-menu";
-import Link from "next/link";
-import SoftPillButton from "@/components/pixel-perfect/soft-pill-button";
-import SocialHoverCard from "@/components/pixel-perfect/social-hover-card";
-import { BannerParticles } from "@/components/BannerParticles";
-import { FileText } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowDown, ArrowRight, ArrowUpRight, Download, Mail, MapPin } from "lucide-react";
+import { SiDocker, SiGithub, SiOpenjdk, SiPostgresql, SiPython, SiReact, SiSpringboot } from "react-icons/si";
+import { MotionShell } from "@/components/editorial/MotionShell";
+import { ProjectGallery } from "@/components/editorial/ProjectGallery";
+import { BlueprintCompare } from "@/components/editorial/BlueprintCompare";
+import { highlightsData } from "@/data/highlightsData";
+import styles from "./editorial.module.css";
 
-const skills = [
-  { name: "Java", icon: "oracle" },
-  { name: "Spring Boot", icon: "springboot" },
-  { name: "Python", icon: "python" },
-  { name: "C++", icon: "cplusplus" },
-  { name: "JavaScript", icon: "javascript" },
-  { name: "TypeScript", icon: "typescript" },
-  { name: "React", icon: "react" },
-  { name: "Next", icon: "nextdotjs" },
-  { name: "Node", icon: "nodedotjs" },
-  { name: "PostgreSQL", icon: "postgresql" },
-  { name: "MySQL", icon: "mysql" },
-  { name: "MongoDB", icon: "mongodb" },
-  { name: "Redis", icon: "redis" },
-  { name: "Supabase", icon: "supabase" },
-  { name: "Docker", icon: "docker" },
-  { name: "Git", icon: "git" },
-  { name: "Github", icon: "github" },
-  { name: "Postman", icon: "postman" },
-  { name: "Maven", icon: "apachemaven" },
-  { name: "JUnit", icon: "junit5" },
-  { name: "Hibernate", icon: "hibernate" },
-  { name: "Tailwind", icon: "tailwindcss" },
-  { name: "SQL", icon: "databricks" },
-  { name: "Linux", icon: "linux" },
+const toolkit = ["Java", "Spring Boot", "Python", "TypeScript", "React", "PostgreSQL", "MongoDB", "Redis", "Docker", "System design"];
+const stackMarks = [
+  { name: "JAVA", Icon: SiOpenjdk },
+  { name: "SPRING", Icon: SiSpringboot },
+  { name: "PYTHON", Icon: SiPython },
+  { name: "REACT", Icon: SiReact },
+  { name: "POSTGRES", Icon: SiPostgresql },
+  { name: "DOCKER", Icon: SiDocker },
+];
+const process = [
+  { number: "01", title: "THE PROBLEM", text: "Start with the real constraint and the person using the product." },
+  { number: "02", title: "THE SYSTEM", text: "Map the data, boundaries, and interactions before building." },
+  { number: "03", title: "THE BUILD", text: "Ship a working version and make each part earn its place." },
+  { number: "04", title: "THE POLISH", text: "Measure, simplify, and make the experience feel complete." },
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full bg-white dark:bg-black relative overflow-x-hidden transition-colors duration-300">
+    <MotionShell>
+      <main id="main">
+        <section className={styles.hero} id="home" aria-labelledby="hero-title">
+          <div className={styles.heroTopline}>
+            <p data-build="hero-detail"><strong>SOFTWARE ENGINEER / BUILDER</strong><br />BACKEND SYSTEMS · AI PRODUCTS</p>
+            <p data-build="hero-detail"><span className={styles.statusDot} /> OPEN TO INTERESTING WORK</p>
+          </div>
+          <div className={styles.heroWord} data-build="hero-word" aria-hidden="true">PORTFOLIO</div>
+          <div className={styles.heroPortrait} data-build="hero-portrait">
+            <Image src="/hero-anurag-editorial.png" alt="Editorial portrait of Anurag Nayak" fill sizes="(max-width: 700px) 85vw, (max-width: 1200px) 55vw, 48vw" className={styles.portraitImage} preload />
+          </div>
+          <div className={styles.heroLeft}>
+            <p className={styles.heroScript} data-build="hero-copy">Hello, I&apos;m</p>
+            <h1 id="hero-title" data-build="hero-copy">ANURAG<span>.</span></h1>
+            <p className={styles.heroRole} data-build="hero-copy">SOFTWARE<br /><span>ENGINEER.</span></p>
+            <p className={styles.heroDescription} data-build="hero-copy">I build thoughtful software: dependable backend systems, practical AI products, and interfaces that make the work feel simple.</p>
+            <a className={styles.primaryButton} data-build="hero-copy" href="#work">Explore my work <ArrowDown size={18} /></a>
+            <p className={styles.heroLocation} data-build="hero-detail"><MapPin size={13} /> INDIA</p>
+          </div>
+          <aside className={styles.heroRight} aria-label="What I work on">
+            <p className={styles.heroAsideNote} data-build="hero-detail">Good systems.<br />Better experiences.</p>
+            <div data-build="hero-detail"><strong>01</strong><span>BACKEND<br />ENGINEERING</span></div>
+            <div data-build="hero-detail"><strong>02</strong><span>AI &amp; ML<br />PRODUCTS</span></div>
+            <div data-build="hero-detail"><strong>03</strong><span>OPEN SOURCE<br />AND THE WEB</span></div>
+            <Link href="/resume" className={styles.resumeLink} data-build="hero-detail"><Download size={16} /> DOWNLOAD RESUME</Link>
+          </aside>
+          <div className={styles.heroBottomline}>
+            <span data-build="hero-detail">BUILT WITH INTENT</span><span data-build="hero-detail">SCROLL TO DISCOVER <ArrowDown size={15} /></span><span data-build="hero-detail">SELECTED WORK / 2025–2026</span>
+          </div>
+        </section>
 
-      {/* Right Side Blueprint Navigation */}
-      <RightNavbar />
+        <ProjectGallery />
 
-      {/* Vertical Lines - Ultra-fine Micro Dots */}
-      <div className="absolute top-0 bottom-0 left-[30%] w-0 border-r border-black/30 dark:border-white/[0.15] pointer-events-none hidden md:block" style={{ maskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-      <div className="absolute top-0 bottom-0 right-[30%] w-0 border-r border-black/30 dark:border-white/[0.15] pointer-events-none hidden md:block" style={{ maskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)' }} />
+        <section className={styles.stackStrip} aria-label="Technologies I use">
+          <p data-build="line">TOOLS IN MY WORK</p>
+          <div>{stackMarks.map(({ name, Icon }) => <span key={name} data-build="logo"><Icon aria-hidden="true" /><strong>{name}</strong></span>)}</div>
+        </section>
 
-      {/* Horizontal Lines - Ultra-fine Micro Dots */}
-      <div className="absolute left-0 right-0 top-[22vh] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-      <div className="absolute left-0 right-0 top-[calc(22vh+112px)] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
+        <section className={`${styles.section} ${styles.recognitionSection}`} id="recognition" aria-labelledby="recognition-title">
+          <div className={styles.recognitionTop}><p className={styles.eyebrow} data-build="line">SELECTED MILESTONES</p><p data-build="heading">THE WORK.<br /><strong>THE RECOGNITION.</strong></p></div>
+          <div className={styles.recognitionBody}>
+            <div><h2 id="recognition-title" className={styles.displayTitle} data-build="heading">SMALL WINS.<br /><span>BIG MOMENTUM.</span></h2><p className={styles.sectionCopy} data-build="panel">A few moments that shaped how I build, collaborate, and keep learning.</p></div>
+            <ol className={styles.recognitionList}>{highlightsData.map((highlight, index) => (
+              <li key={highlight.id} data-build="line" data-build-order={index}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{highlight.title}</strong><small>{highlight.badge}</small></div>{highlight.link ? <a href={highlight.link} target="_blank" rel="noopener noreferrer" aria-label={`View ${highlight.title}`}><ArrowUpRight size={18} /></a> : <ArrowUpRight size={18} aria-hidden="true" />}</li>
+            ))}</ol>
+          </div>
+        </section>
 
-      {/* Ultra-Tiny Solid Nodes */}
-      {[
-        { top: '22vh', left: '30%' },
-        { top: '22vh', right: '30%' },
-        { top: 'calc(22vh + 112px)', left: '30%' },
-        { top: 'calc(22vh + 112px)', right: '30%' },
-      ].map((pos, i) => (
-        <div key={i} className="absolute w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] pointer-events-none z-10 hidden md:block"
-          style={{
-            top: pos.top,
-            left: pos.left,
-            right: pos.right,
-            transform: `translate(${pos.right ? '50%' : '-50%'}, -50%)`
-          }} />
-      ))}
+        <BlueprintCompare />
 
-      {/* Cell 1: Banner */}
-      <div className="absolute left-0 right-0 md:left-[30%] md:right-[30%] top-0 h-[22vh] -z-0 pointer-events-auto overflow-hidden bg-white dark:bg-black shadow-[0_4px_12px_rgba(2,6,23,0.04)] dark:shadow-[0_4px_12px_rgba(2,6,23,0.10)]">
-        <Image
-          src="/ChatGPT%20Image%20May%2022%2C%202026%2C%2012_40_29%20AM.jpg"
-          alt=""
-          fill
-          fetchPriority="high"
-          sizes="(min-width: 768px) 40vw, 100vw"
-          quality={100}
-          className="object-cover object-center dark:hidden"
-        />
-        <Image
-          src="/ChatGPT%20Image%20May%2022%2C%202026%2C%2012_49_39%20AM.jpg"
-          alt=""
-          fill
-          fetchPriority="high"
-          sizes="(min-width: 768px) 40vw, 100vw"
-          quality={100}
-          className="hidden object-cover object-center dark:block"
-        />
-        <BannerParticles />
-        <div className="absolute inset-x-0 bottom-0 h-10 pointer-events-none z-[5] bg-gradient-to-t from-white/90 to-transparent dark:from-black/50 dark:to-transparent" />
-        <div className="absolute left-0 top-0 bottom-0 w-8 pointer-events-none z-20 bg-gradient-to-r from-white/90 to-transparent dark:from-black/40 dark:to-transparent" />
-        <div className="absolute right-0 top-0 bottom-0 w-8 pointer-events-none z-20 bg-gradient-to-l from-white/90 to-transparent dark:from-black/40 dark:to-transparent" />
-        <div className="absolute bottom-3 right-2 z-10 pointer-events-auto">
-          <CurrentTime />
-        </div>
-      </div>
+        <section className={`${styles.section} ${styles.aboutSection}`} id="about" aria-labelledby="about-title">
+          <div className={styles.aboutLead}><div><p className={styles.eyebrow} data-build="line">02 / BEHIND THE BUILD</p><h2 id="about-title" className={styles.displayTitle} data-build="heading">NOT JUST CODE.<br />THE SYSTEM <span>BEHIND IT.</span></h2></div><p data-build="panel">I&apos;m Anurag, a computer science student focused on backend engineering and AI. I like taking an idea apart, finding the system underneath, and building something people can actually use.</p></div>
+          <div className={styles.aboutColumns}>
+            <div><p className={styles.eyebrow} data-build="line">WHAT I WORK WITH</p><h3 className={styles.columnTitle} data-build="heading">ENGINEERING TOOLKIT</h3><div className={styles.toolkit}>{toolkit.map((item, index) => <span key={item} data-build="part" data-build-order={index}>{item}</span>)}</div><Link className={styles.inlineLink} data-build="line" href="/pull-requests">EXPLORE OPEN SOURCE <ArrowUpRight size={17} /></Link></div>
+            <div><p className={styles.eyebrow} data-build="line">FROM IDEA TO WORKING PRODUCT</p><div className={styles.processList}>{process.map((step, index) => <div key={step.number} data-build="part" data-build-order={index}><span>{step.number}</span><div><h3>{step.title}</h3><p>{step.text}</p></div><ArrowUpRight size={17} /></div>)}</div></div>
+          </div>
+          <div className={styles.quoteBand} data-build="heading">BUILD THE THING<span>.</span> MAKE IT MATTER<span>.</span></div>
+        </section>
 
-      {/* Cell 2: Profile Section - 112px height to wrap the framed image (13px gap top/bottom) */}
-      <div className="absolute left-0 right-0 md:left-[30%] md:right-[30%] top-[22vh] h-[112px] flex items-center px-4 z-50">
-        <div className="flex w-full items-center justify-between">
-
-          <div className="flex items-center gap-4 sm:gap-5">
-            <div className="relative p-[3px] rounded-[6px] sm:rounded-[8px] border-[1.5px] border-black/30 dark:border-white/[0.15] shrink-0">
-              {/* The inner image */}
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-[3px] sm:rounded-[5px] overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-                <Image
-                  src="https://github.com/dark7462.png"
-                  alt="Profile"
-                  width={240}
-                  height={240}
-                  quality={90}
-                  fetchPriority="high"
-                  sizes="(min-width: 640px) 120px, 96px"
-                  className="h-full w-full origin-center translate-y-4 scale-[1.48] object-cover opacity-90 grayscale contrast-100 mix-blend-multiply dark:mix-blend-normal"
-                />
-              </div>
+        <section className={`${styles.section} ${styles.journeySection}`} id="journey" aria-labelledby="journey-title">
+          <div className={styles.sectionHeadingRow}><div><p className={styles.eyebrow} data-build="line">03 / THE JOURNEY</p><h2 id="journey-title" className={styles.displayTitle} data-build="heading">KEEP BUILDING.<br /><span>KEEP LEARNING.</span></h2></div><Link className={styles.textLink} data-build="line" href="/experience">FULL EXPERIENCE <ArrowUpRight size={18} /></Link></div>
+          <div className={styles.journeyGrid}>
+            <div className={styles.timeline}>
+              <details data-build="line" data-build-order={0} open><summary><span>2025 — 2026</span><strong>Campus Ambassador</strong><em>Unstop</em><span>+</span></summary><p>Guided students through placement preparation, hackathons, and competitive opportunities through outreach sessions and community work.</p></details>
+              <details data-build="line" data-build-order={1}><summary><span>2025</span><strong>National Grand Finalist</strong><em>Smart India Hackathon</em><span>+</span></summary><p>Built GeoLoanLens with a team for the SIH 2025 national grand finals.</p></details>
+              <details data-build="line" data-build-order={2}><summary><span>NOW</span><strong>Building in public</strong><em>Projects &amp; open source</em><span>+</span></summary><p>Working on VibeBench, GridCam, and backend tools while contributing to open source.</p></details>
             </div>
-
-            <div className="flex flex-col justify-center pt-8">
-              <h1 className="text-[20px] sm:text-[24px] font-bold text-zinc-800 dark:text-zinc-100 tracking-tight leading-none mb-0.5 [text-shadow:-1.5px_0_0_rgba(0,200,255,0.3),1.5px_0_0_rgba(255,80,0,0.3)] dark:[text-shadow:-1.5px_0_0_rgba(0,200,255,0.6),1.5px_0_0_rgba(255,80,0,0.6)]">
-                Anurag Nayak
-              </h1>
-              <p className="text-[13px] sm:text-[14px] text-zinc-500 dark:text-zinc-400">B.Tech CSE (AI & ML) • Immediate Joiner</p>
-            </div>
+            <aside className={styles.journeyAside}><p className={styles.eyebrow} data-build="line">A FEW MILESTONES</p><h3 data-build="heading">LITTLE WINS.<br /><span>BIG MEANING.</span></h3><p data-build="panel">Projects are the best record of how I think. The work keeps evolving.</p><Link href="/projects" data-build="line">SEE THE PROJECTS <ArrowRight size={17} /></Link></aside>
           </div>
+        </section>
 
-          <div className="flex items-start justify-end gap-2 sm:gap-3 h-20 sm:h-24 py-1">
-            <CommandMenu />
-            <ThemeToggle className="dark:text-zinc-400 hover:dark:text-zinc-300" />
+        <section className={`${styles.section} ${styles.contactSection}`} id="contact" aria-labelledby="contact-title">
+          <div className={styles.contactIntro}><p className={styles.eyebrow} data-build="heading">04 / WHAT&apos;S NEXT</p><h2 id="contact-title" className={styles.displayTitle} data-build="heading">LET&apos;S BUILD<br /><span>SOMETHING REAL.</span></h2><p data-build="panel">Have a role, project, or idea worth discussing? I&apos;d love to hear about it.</p><a className={styles.contactButton} data-build="panel" href="mailto:anu870906@gmail.com"><span><ArrowUpRight size={22} /></span> START A CONVERSATION</a></div>
+          <div className={styles.contactLinks}>
+            <a data-build="line" data-build-order={0} href="mailto:anu870906@gmail.com"><Mail size={20} /><span><small>EMAIL</small>anu870906@gmail.com</span><ArrowUpRight size={17} /></a>
+            <a data-build="line" data-build-order={1} href="https://github.com/dark7462" target="_blank" rel="noopener noreferrer"><SiGithub size={20} /><span><small>GITHUB</small>@dark7462</span><ArrowUpRight size={17} /></a>
+            <a data-build="line" data-build-order={2} href="https://www.linkedin.com/in/dark7462" target="_blank" rel="noopener noreferrer"><span className={styles.linkedinMark}>in</span><span><small>LINKEDIN</small>Anurag Nayak</span><ArrowUpRight size={17} /></a>
+            <Link data-build="line" data-build-order={3} href="/resume"><Download size={20} /><span><small>RESUME</small>View or download</span><ArrowUpRight size={17} /></Link>
           </div>
-
-        </div>
-      </div>
-
-      {/* Flowing Content Section */}
-      <div className="ml-0 mr-0 md:ml-[30%] md:mr-[30%] pt-[calc(22vh+112px)] pb-0 px-4 flex flex-col z-10 relative min-h-screen">
-        <p className="text-[14px] sm:text-[15px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-4">
-          Backend Engineer / Builder. I love designing scalable systems and shipping things.
-        </p>
-
-        <ul className="text-[14px] sm:text-[15px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-4 pl-4">
-          <li className="flex gap-1.5"><span>•</span><span>System design, distributed systems, and backend engineering excite me.</span></li>
-          <li className="flex gap-1.5"><span>•</span><span>SIH 2025 National Grand Finalist (Top 0.5% of 300k+ teams).</span></li>
-          <li className="flex gap-1.5"><span>•</span><span>Currently building <span className="font-semibold text-zinc-900 dark:text-white">VibeBench</span>, <span className="font-semibold text-zinc-900 dark:text-white">GridCam</span>, and scalable backend tools.</span></li>
-        </ul>
-
-        {/* Buttons */}
-        <div className="flex flex-wrap items-center gap-2 mt-4">
-          <Link href="/contact">
-            <SoftPillButton
-              as="span"
-              variant="primary"
-              className="px-3 py-1.5 !text-[12px]"
-            >
-              <div className="flex items-center gap-1.5">
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                Book an intro call
-              </div>
-            </SoftPillButton>
-          </Link>
-          <Link href="/contact">
-            <SoftPillButton
-              as="span"
-              variant="secondary"
-              className="px-3 py-1.5 !text-[12px]"
-            >
-              <div className="flex items-center gap-1.5 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-                Send an email
-              </div>
-            </SoftPillButton>
-          </Link>
-        </div>
-
-        {/* Socials */}
-        <div id="contact" className="mt-6 scroll-mt-24">
-          <h2 className="text-[14px] text-zinc-500 mb-2">Here are my <span className="font-medium text-zinc-800 dark:text-zinc-200">socials</span></h2>
-          <div className="flex flex-wrap gap-1.5">
-            {[
-              { name: 'GitHub', href: 'https://github.com/dark7462', icon: <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" strokeWidth="2" fill="none"></path> },
-              { name: 'LinkedIn', href: 'https://www.linkedin.com/in/dark7462', icon: <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1-2 2 2 2 0 0 1 2-2z" stroke="currentColor" strokeWidth="2" fill="none"></path> },
-              { name: 'Discord', href: '#', icon: <path d="M18 5c-1.5-.7-3.2-1-5-1s-3.5.3-5 1c-1.5 3.5-2.5 8-2.5 8 1.5 2 4.5 3 7.5 3s6-1 7.5-3c0 0-1-4.5-2.5-8zM9 13c-.8 0-1.5-.7-1.5-1.5S8.2 10 9 10s1.5.7 1.5 1.5S9.8 13 9 13zm6 0c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5z" fill="currentColor"></path> },
-            ].map((social, i) => (
-              <SocialHoverCard key={i} socialName={social.name}>
-                <SoftPillButton
-                  as="a"
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="secondary"
-                  className="px-3 py-1.5 !text-[12px]"
-                >
-                  <div className="flex items-center gap-1.5 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg viewBox="0 0 24 24" className="w-3.5 h-3.5">
-                      {social.icon}
-                    </svg>
-                    {social.name}
-                  </div>
-                </SoftPillButton>
-              </SocialHoverCard>
-            ))}
-            <Link href="/resume">
-              <SoftPillButton
-                as="span"
-                variant="secondary"
-                className="px-3 py-1.5 !text-[12px]"
-              >
-                <span className="flex items-center gap-1.5 opacity-70 transition-opacity duration-300 group-hover:opacity-100">
-                  <FileText className="h-3.5 w-3.5" />
-                  Resume
-                </span>
-              </SoftPillButton>
-            </Link>
-          </div>
-        </div>
-
-        {/* Experiences */}
-        <div id="experience" className="mt-6 flex flex-col relative z-10 scroll-mt-24">
-          {/* Top full-width line */}
-          <div
-            className="absolute top-0 left-[-100vw] right-[-100vw] h-0 border-t border-black/30 dark:border-white/[0.15] pointer-events-none"
-            style={{
-              maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)',
-              WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)'
-            }}
-          />
-          {/* Top Line Intersections */}
-          <div className="absolute top-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20" />
-          <div className="absolute top-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 -translate-y-1/2 pointer-events-none z-20" />
-
-          <div className="py-2 relative">
-            <h2 className="text-[18px] font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">Experiences</h2>
-            {/* Bottom full-width line */}
-            <div
-              className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none"
-              style={{
-                maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)',
-                WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)'
-              }}
-            />
-            {/* Bottom Line Intersections */}
-            <div className="absolute bottom-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-            <div className="absolute bottom-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-          </div>
-
-          <div className="block mt-0">
-            <ExperienceList />
-
-            {/* View All Button */}
-            <div className="py-4 px-4 -mx-4 flex justify-center relative hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors cursor-pointer rounded-b-lg mt-0">
-              <div className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-              {/* Bottom Line Intersections */}
-              <div className="absolute bottom-0 left-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-              <div className="absolute bottom-0 right-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-              <Link href="/experience" className="relative group block mt-0">
-                <div className="absolute -inset-[5px] border border-black/5 dark:border-white/5 rounded-[11px] pointer-events-none transition-colors duration-300 group-hover:border-black/10 dark:group-hover:border-white/10" />
-                <div className="relative flex items-center gap-1.5 px-4 py-2 bg-zinc-50 hover:bg-zinc-100 dark:bg-[#09090b] dark:hover:bg-[#121214] text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-[6px] text-[13px] font-medium transition-all duration-300 border border-black/5 dark:border-white/5 shadow-sm shadow-black/20 dark:shadow-lg dark:shadow-black/80">
-                  View All
-                  <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-300 transition-colors" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Projects */}
-        <div id="projects" className="mt-0 flex flex-col relative z-10 scroll-mt-24">
-          <div className="py-2 relative mt-1">
-            <h2 className="text-[18px] font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">Projects</h2>
-
-            {/* Horizontal line below Projects heading */}
-            <div className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-            {/* Intersections */}
-            <div className="absolute bottom-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-            <div className="absolute bottom-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-            <div className="absolute bottom-0 left-1/2 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-          </div>
-
-          {/* Grid Container */}
-          <div className="relative pt-6 pb-12 px-4">
-            {/* Center Vertical Line */}
-            <div className="absolute top-0 bottom-6 left-1/2 w-0 border-r border-black/30 dark:border-white/[0.15] pointer-events-none -translate-x-1/2 hidden md:block" style={{ maskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-
-            <ProjectsGrid />
-
-            {/* Bottom Horizontal Line */}
-            <div className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-            {/* Intersections */}
-            <div className="absolute bottom-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-            <div className="absolute bottom-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-            {/* Center dot removed to prevent crossing the outline gap of the View All button */}
-          </div>
-
-          {/* View All Button */}
-          <div className="flex justify-center -mt-[19px] pb-0 relative z-20">
-            <Link href="/projects" className="relative group block">
-              <div className="absolute -inset-[5px] border border-black/5 dark:border-white/5 rounded-[11px] pointer-events-none transition-colors duration-300 group-hover:border-black/10 dark:group-hover:border-white/10" />
-              <div className="relative flex items-center gap-1.5 px-4 py-2 bg-zinc-50 hover:bg-zinc-100 dark:bg-[#09090b] dark:hover:bg-[#121214] text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-[6px] text-[13px] font-medium transition-all duration-300 border border-black/5 dark:border-white/5 shadow-sm shadow-black/20 dark:shadow-lg dark:shadow-black/80">
-                View All
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-300 transition-colors" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </div>
-            </Link>
-          </div>
-        </div>
-
-        {/* Github Graph */}
-        <GithubGraph />
-
-        {/* Open Source Contributions */}
-        <div id="opensource" className="scroll-mt-24">
-          <OpenSourceContributions />
-        </div>
-
-        {/* Skills */}
-        <div id="skills" className="mt-6 flex flex-col relative z-10 scroll-mt-24">
-          {/* Top full-width line */}
-          <div
-            className="absolute top-0 left-[-100vw] right-[-100vw] h-0 border-t border-black/30 dark:border-white/[0.15] pointer-events-none"
-            style={{
-              maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)',
-              WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)'
-            }}
-          />
-          {/* Top Line Intersections */}
-          <div className="absolute top-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20" />
-          <div className="absolute top-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 -translate-y-1/2 pointer-events-none z-20" />
-
-          <div className="py-2 relative mt-1">
-            <h2 className="text-[18px] font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">Skills & Technologies</h2>
-
-            {/* Horizontal line below Skills heading */}
-            <div className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-            {/* Intersections */}
-            <div className="absolute bottom-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-            <div className="absolute bottom-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-          </div>
-
-          <div className="relative pt-6 pb-2">
-            <div className="flex flex-wrap gap-2 w-full">
-              {skills.map((skill, index) => (
-                <div key={index} className="grow flex items-center justify-center gap-2 px-3 py-1.5 bg-zinc-50 hover:bg-zinc-100 dark:bg-[#0a0a0a] dark:hover:bg-[#121214] border border-black/30 dark:border-white/[0.15] rounded-[6px] transition-colors duration-200 cursor-default">
-                  <img
-                    src={skill.icon.startsWith('http') ? skill.icon : `https://cdn.simpleicons.org/${skill.icon}/71717a`}
-                    alt={skill.name}
-                    width={14}
-                    height={14}
-                    loading="lazy"
-                    decoding="async"
-                    className={`h-3.5 w-3.5 opacity-80 ${skill.icon.startsWith('http') ? 'rounded-sm grayscale' : ''}`}
-                  />
-                  <span className="text-[13px] font-medium text-zinc-600 dark:text-zinc-400">{skill.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Blogs */}
-        <div id="blogs" className="mt-6 flex flex-col relative scroll-mt-24">
-          {/* Top full-width line */}
-          <div
-            className="absolute top-0 left-[-100vw] right-[-100vw] h-0 border-t border-black/30 dark:border-white/[0.15] pointer-events-none"
-            style={{
-              maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)',
-              WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)'
-            }}
-          />
-          {/* Top Line Intersections */}
-          <div className="absolute top-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20" />
-          <div className="absolute top-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 -translate-y-1/2 pointer-events-none z-20" />
-
-          <div className="py-2 relative mt-1">
-            <h2 className="text-[18px] font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">Blogs</h2>
-
-            {/* Horizontal line below Blogs heading */}
-            <div className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-            {/* Intersections */}
-            <div className="absolute bottom-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-            <div className="absolute bottom-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-          </div>
-
-          <BlogList />
-
-          {/* View All Button */}
-          <div className="py-4 px-4 -mx-4 flex justify-center relative hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors cursor-pointer rounded-b-lg mt-0">
-            <div className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-            {/* Bottom Line Intersections */}
-            <div className="absolute bottom-0 left-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-            <div className="absolute bottom-0 right-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-
-            <Link href="#" target="_blank" rel="noopener noreferrer" className="relative group block mt-0">
-              <div className="absolute -inset-[5px] border border-black/5 dark:border-white/5 rounded-[11px] pointer-events-none transition-colors duration-300 group-hover:border-black/10 dark:group-hover:border-white/10" />
-              <div className="relative flex items-center gap-1.5 px-4 py-2 bg-zinc-50 hover:bg-zinc-100 dark:bg-[#09090b] dark:hover:bg-[#121214] text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-[6px] text-[13px] font-medium transition-all duration-300 border border-black/5 dark:border-white/5 shadow-sm shadow-black/20 dark:shadow-lg dark:shadow-black/80">
-                View All
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-300 transition-colors" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </div>
-            </Link>
-          </div>
-        </div>
-
-        {/* Highlights */}
-        <div id="highlights" className="mt-6 flex flex-col relative z-10 scroll-mt-24">
-          {/* Top full-width line */}
-          <div
-            className="absolute top-0 left-[-100vw] right-[-100vw] h-0 border-t border-black/30 dark:border-white/[0.15] pointer-events-none"
-            style={{
-              maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)',
-              WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)'
-            }}
-          />
-          {/* Top Line Intersections */}
-          <div className="absolute top-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20" />
-          <div className="absolute top-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 -translate-y-1/2 pointer-events-none z-20" />
-
-          <div className="py-2 relative mt-1">
-            <h2 className="text-[18px] font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">Highlights</h2>
-
-            {/* Horizontal line below heading */}
-            <div className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-            {/* Intersections */}
-            <div className="absolute bottom-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-            <div className="absolute bottom-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-          </div>
-
-          <Highlights />
-
-          {/* Bottom line */}
-          <div className="relative mt-4 pb-4">
-            <div className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-            <div className="absolute bottom-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-            <div className="absolute bottom-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-          </div>
-        </div>
-
-        {/* Minimal Quote Section */}
-        <div className="mt-12 flex flex-col items-center justify-center relative py-12">
-          <div className="max-w-[480px] w-full flex flex-col items-center">
-            <h3 className="text-[16px] font-medium text-center leading-relaxed text-zinc-500 dark:text-zinc-400 mb-6 italic">
-              &quot;Do so much work that it would be unreasonable<br className="hidden md:block" /> for you to not be successful.&quot;
-            </h3>
-
-            <div className="flex items-center gap-3 text-[10px] font-medium tracking-[0.2em] text-zinc-400 dark:text-zinc-600 uppercase">
-              <div className="w-4 h-[1px] bg-zinc-200 dark:bg-zinc-800" />
-              ALEX HORMOZI
-              <div className="w-4 h-[1px] bg-zinc-200 dark:bg-zinc-800" />
-            </div>
-          </div>
-        </div>
-
-        {/* Fading Grid Filler */}
-        <div className="flex-grow w-[calc(100%+32px)] -mx-4 h-[300px] relative mt-4">
-          {/* Top full-width line */}
-          <div
-            className="absolute top-0 left-[-100vw] right-[-100vw] h-0 border-t border-black/30 dark:border-white/[0.15] pointer-events-none z-10"
-            style={{
-              maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)',
-              WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)'
-            }}
-          />
-          {/* Intersections */}
-          <div className="absolute top-0 left-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20" />
-          <div className="absolute top-0 right-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 -translate-y-1/2 pointer-events-none z-20" />
-
-          <FooterBackground />
-        </div>
-
-      </div>
-
-    </div>
+          <div className={styles.contactPoster} data-build="panel"><span>ANURAG® / SELECTED WORK</span><strong>MAKE IT<br /><em>WORK.</em></strong><Link href="/contact" aria-label="Open contact page"><ArrowUpRight size={24} /></Link></div>
+        </section>
+      </main>
+      <footer className={styles.footer}><a href="#home">ANURAG®</a><span>© 2026 ANURAG NAYAK · BUILT WITH INTENT.</span><a href="#home">BACK TO TOP ↑</a></footer>
+    </MotionShell>
   );
 }

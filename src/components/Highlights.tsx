@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { highlightsData, type Highlight } from "@/data/highlightsData";
 
@@ -10,11 +11,12 @@ function HighlightCard({ item }: { item: Highlight }) {
       {/* Screenshot */}
       <div className="relative w-full aspect-video bg-zinc-100 dark:bg-zinc-800/40 overflow-hidden">
         {item.image ? (
-          <img
+          <Image
             src={item.image}
             alt={item.title}
-            className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
-            loading="lazy"
+            fill
+            sizes="260px"
+            className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
             draggable={false}
           />
         ) : (

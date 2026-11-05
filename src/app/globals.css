@@ -135,6 +135,10 @@ html {
   -ms-overflow-style: none; /* IE/Edge */
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 html::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }

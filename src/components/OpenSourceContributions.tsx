@@ -255,7 +255,7 @@ export function OpenSourceContributions({ isFullPage = false }: { isFullPage?: b
                     )}
                     <div className="flex items-center gap-2.5 relative z-20 min-w-0">
                       <div className={`w-2 h-2 rounded-full shrink-0 ${pr.state === "MERGED"
-                        ? "bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.4)]"
+                        ? "bg-rose-600 shadow-[0_0_8px_rgba(225,29,72,0.4)]"
                         : pr.state === "OPEN"
                           ? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]"
                           : "bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.4)]"
@@ -287,8 +287,8 @@ export function OpenSourceContributions({ isFullPage = false }: { isFullPage?: b
               )}
             </div>
           ) : (
-            <div className="flex justify-center py-4 text-center text-[13px] text-zinc-500">
-              No pull requests found. <span className="ml-1 text-zinc-400">(Add GITHUB_TOKEN in Vercel and redeploy)</span>
+            <div className="py-6 text-[13px] text-zinc-400">
+              Nothing to show in this category right now. <a href="https://github.com/dark7462" target="_blank" rel="noopener noreferrer" className="text-zinc-100 underline underline-offset-4">Explore my GitHub profile</a>.
             </div>
           )}
         </div>

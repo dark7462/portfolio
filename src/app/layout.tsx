@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Anton, Caveat, Geist, Geist_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from '@vercel/analytics/next';
@@ -15,10 +15,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const anton = Anton({
+  variable: "--font-anton",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+});
+
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Anurag Nayak",
   description:
-    "Aspiring Software Development Engineer with a strong foundation in scalable backend systems, system design, and distributed systems.",
+    "Anurag Nayak builds thoughtful software across backend engineering, AI, and the web. Explore selected projects and get in touch.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -29,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Anurag Nayak",
     description:
-      "Aspiring SDE building scalable backend systems and distributed architectures.",
+      "Backend engineering, AI, and selected work by Anurag Nayak.",
     type: "website",
   },
 };
@@ -43,7 +59,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${anton.variable} ${caveat.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col dark:bg-black dark:text-zinc-50 transition-colors duration-300">
         <ThemeProvider
