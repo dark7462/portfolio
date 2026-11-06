@@ -1,34 +1,41 @@
-# Anurag Nayak — Portfolio
+# Anurag Nayak portfolio
 
-An editorial portfolio for Anurag Nayak, built with Next.js 16, React 19, TypeScript, and CSS Modules. It presents selected engineering work, experience, open-source contributions, a resume, and contact information.
-
-## Design
-
-The redesign takes its visual direction from the [Renando portfolio](https://portofoliorenando.pages.dev/) seen in the [Instagram reference](https://www.instagram.com/p/DfMhyC7Ma31/): oversized condensed typography, a near-black and red palette, a portrait-led hero, image-led work, and cursor-led construction. All content, project links, and identity are Anurag's.
-
-The hero portrait and four project covers were generated for this site. Covers are marked as illustrations rather than product screenshots. Colored agent cursors build components on the actual full-screen page: they move to a target, mark its bounds, and place its text, image, or card. The hero's title, portrait, copy, and details arrive separately; project card shells, images, and captions follow as visitors scroll. Scrolling up removes those placements in reverse order, and scrolling down builds them again. The page does not scroll automatically. The header can replay the hero build; turning motion off or requesting reduced motion shows the finished page immediately.
-
-The detailed design and build plan is in [`docs/portfolio-redesign-plan.md`](docs/portfolio-redesign-plan.md).
+A Next.js 16 portfolio built from the completed brief in [docs/Website_portfolio_details_filled.md](docs/Website_portfolio_details_filled.md) and the supplied SDE resume.
 
 ## Run locally
 
-```bash
-npm ci
-npm run dev
-```
+- Install the locked dependencies with npm ci.
+- Start the preview with npm run dev.
+- Check TypeScript with npm run check.
+- Run ESLint with npm run lint.
+- Create the production build with npm run build, then run npm start.
 
-Open [http://localhost:3000](http://localhost:3000).
+The Google Fonts used by next/font require network access during a fresh production build.
 
-## Check
+## Edit content
 
-```bash
-npm run lint
-npx tsc --noEmit
-npm run build
-```
+[src/data/siteConfig.ts](src/data/siteConfig.ts) holds the public identity, contact links, projects, skills, campus roles, education, achievements, appearance preferences, and motion speed. Project and recognition modules derive their content from it.
 
-## Notes
+The portfolio has five project case studies, four featured projects, category filters, technology search, and keyboard-accessible quick views. Sherlock has an abstract evidence-graph cover. The other four covers are generated illustrations, labelled accordingly.
 
-- The open-source contributions page uses GitHub GraphQL through `/api/github` when `GITHUB_TOKEN` is available. It falls back to GitHub's public search API when no token is configured.
-- The contact form sends through FormSubmit to the address configured in `EditorialContactForm.tsx`. Direct email and social links are available on the contact page.
-- Project details and their links live in `src/data/projectsData.ts`.
+The current public resume and its image preview are public/Anurag-Nayak-Resume.pdf and public/Anurag-Nayak-Resume.png. The phone text and telephone link were removed from the supplied resume; other content and links were preserved. Verification is recorded in [docs/public-resume-verification.md](docs/public-resume-verification.md).
+
+## Interaction
+
+The full page assembles as visitors scroll. Cursors travel to targets, drag component frames with dimensions, type copy, and commit the real components. Reverse scrolling erases and removes outgoing components. Idle workers move toward the edges. Rebuild page restarts the hero; Motion off and reduced motion show the completed page. The motion setting persists under a portfolio-specific key.
+
+The header includes active navigation, a progress line, and a mobile menu with Escape and focus restoration. Contact uses a validated email-draft form: visitors review and send through their own email app. The page never claims delivery.
+
+## References and assets
+
+The editorial direction follows the supplied [Touquir reference](https://touquirakhtar.com/) and the [Renando portfolio](https://portofoliorenando.pages.dev/) shown in the [Instagram reel](https://www.instagram.com/p/DfMhyC7Ma31/). Personal content comes from Anurag's supplied resume and existing project links.
+
+The suggested [Swarm Rebuild repository](https://github.com/imperfec-t/swarm-Antigravity) describes its code as unlicensed. Its code is not included or injected here. The local component construction effect is independently implemented.
+
+The approved generated portrait is based on Anurag's own image. Generated imagery is not represented as a real product screenshot. No client logos, testimonials, or unrelated personal credentials are shown.
+
+## Domain and services
+
+The public website URL is intentionally blank. Canonical/domain metadata is omitted until a real domain is supplied. No publishing or hosting account is required to run this checkout.
+
+The open-source contributions route uses the existing GitHub endpoint and can use GITHUB_TOKEN server-side. Public project demos are owner-supplied external links; their availability can change.

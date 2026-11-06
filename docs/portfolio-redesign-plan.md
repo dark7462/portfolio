@@ -1,45 +1,44 @@
-# Anurag portfolio redesign — design and build plan
+# Portfolio implementation
 
-## Direction
+Implemented from Website_portfolio_details_filled.md and the supplied SDE resume, preserving the existing Next.js application.
 
-Rebuild the portfolio as a dark editorial experience based on the Renando site shown in the supplied reel. Match its visual rhythm: oversized condensed headlines, near-black canvas, red accents, generous full-width sections, portrait-led hero, strong project imagery, fine rules, and cursor-led component construction. Use Anurag's existing projects, links, highlights, and resume rather than the reference site's identity or claims.
+## Content and layout
 
-The reel begins with a near-black canvas and a cluster of colored pointers. They scatter to selected regions as the hero is built in separate pieces, then continue placing components on the actual page while it scrolls through work, recognition, comparison, story, and contact. Recreate that staged placement on the final page. The pointers are a visual presentation effect; they never represent real visitors or autonomous editing.
+- One public configuration: src/data/siteConfig.ts.
+- Full-height editorial hero with the approved generated portrait, current positioning, contact/work actions, and three resume-supported outcomes.
+- Five projects, four featured: URL Shortener API, VibeBench, Sherlock, GridCam, and GeoLoanLens.
+- Category filters, project/technology search, all-project expansion, accessible quick views, and full project routes.
+- Correct Python/FastAPI/React/Docker/AWS EC2/SQLite stack for VibeBench.
+- An abstract evidence-graph cover for Sherlock; generated covers remain labelled as illustrations.
+- Resume achievements, grouped engineering skills, process, campus leadership, and education.
+- OpenAI Campus Lead is presented as a campus role at Aditya University. Team outcomes remain attributed to the team.
+- Public resume PDF and image preview, with the phone text and tel link permanently removed.
+- Responsive navigation, mobile menu, active section indication, scroll progress, shared footer, and a validated email-draft contact form.
+- Metadata uses the supplied identity. The website URL remains blank at the user's request, so canonical/domain metadata is omitted.
+- No phone/WhatsApp links, client logos, testimonials, unsupported SIH percentile, or synthetic before/after comparison.
 
-## Page sequence
+## Reference observations and motion
 
-1. **Opening and hero:** start with the actual full-screen hero near black; multiple agent pointers gather, select positions, and place the oversized red `PORTFOLIO` word, generated portrait, copy, and details separately.
-2. **Selected work:** original generated cover artwork for GeoLoanLens, VibeBench, GridCam, and URL Shortener; category filters and a search field; links to the existing project pages and external destinations. Covers are labelled as illustrations so they cannot be mistaken for product screenshots.
-3. **Technology marks and recognition:** a short strip of tools Anurag uses, followed by selected milestones from the repository. Avoid unsupported counts, client logos, or borrowed credentials.
-4. **From plan to product:** an interactive comparison between a clearly labelled illustrative system blueprint and generated concept art, inspired by the reference's before/after module.
-5. **About and toolkit:** short personal statement, engineering skills, and a compact build process grounded in the current portfolio.
-6. **Journey:** existing experience and milestones in a clean timeline with expandable detail.
-7. **Contact finale:** large typographic invitation; email, GitHub, LinkedIn, resume, and existing contact route.
+The supplied Touquir reference was inspected in the browser: its full-height portrait hero, condensed red/black typography, work categories/search, project previews, toolkit, journey, and contact rhythm informed the implementation.
 
-## Visual and behavior rules
+The suggested Swarm repository describes drawn component bounds, typed text, guides and duplicates. It has no reuse license, and its code was not imported. The existing local engine is an independent component implementation.
 
-- Palette: near-black background, warm off-white text, vivid red primary accent, muted gray supporting text.
-- Typography: condensed display face for headlines, restrained sans-serif for body and navigation, script accent only in the hero.
-- Construction: each component has an unplaced, selected, and placed state. Colored pointers move to its location, a brief selection frame marks its bounds, and the actual text, image, card, or detail is placed. Project card shells arrive before their images and captions; recognition, story, and contact pieces are placed individually.
-- Scroll behavior: scrolling down builds the section in view; scrolling up tears its components down in reverse order and scrolling down rebuilds them. The site never advances the visitor's scroll position automatically. The header can replay the hero build.
-- Motion preferences: a motion-off control and `prefers-reduced-motion` show the finished page immediately, without pointer travel or staged placement.
-- Layout: full-width desktop sections with responsive one-column mobile composition. No horizontal overflow or tiny text.
-- Accessibility: semantic headings, keyboard-operable filters, search and comparison slider, visible focus, descriptive image alternatives, and skip link.
-- Content: preserve project and social URLs; correct stale identity and availability copy; avoid implying experience or metrics that the repository does not support.
+The page's agents now draw expanding selection rectangles with dimensions, type copy, and place the real components. Reverse scroll erases copy and contracts outgoing frames. Speed remains 1.5x. Waiting cursors disperse toward edges. Replay, cancellation, Motion off, and reduced motion retain access to completed content.
 
-## Build order
+## Verification
 
-1. Install locked dependencies and read the installed Next.js 16 guides before editing app code.
-2. Establish the editorial tokens, typography, and generated hero asset.
-3. Build the homepage sections and lightweight client interactions around existing data.
-4. Restyle project, experience, open-source, resume, and contact routes so navigation follows the same visual system.
-5. Verify desktop and mobile layouts, keyboard interaction, reduced motion, image loading, links, lint, and production build.
+- npm run lint: passed.
+- npm run check: passed.
+- npm run build: passed, including all five static project routes.
+- Browser widths checked: 1440, 768, 390, 320 px; no horizontal overflow observed.
+- Search, category filter, empty state, and all five projects checked.
+- Sherlock quick view, Escape dismissal, and restored trigger focus checked.
+- Mobile menu Escape, focus restoration, and anchor navigation checked.
+- Saved motion choice after reload checked.
+- Construction frames, multiple working agents, and zero center cluster checked.
+- Toggling motion off during construction leaves no hidden hero nodes or inert project shells.
+- Contact required-field validation checked; no email sent.
+- Public resume: one page, no phone text or tel annotations, seven retained nonphone links.
+- Browser error log inspected: no errors observed during these checks.
 
-## Acceptance criteria
-
-- The homepage visibly follows the reference's whole-page visual sequence while remaining recognizably Anurag's portfolio.
-- The real full-screen hero visibly assembles through distinct pointer-led placements. Scrolling down builds actual section components; scrolling up removes them in reverse order, and scrolling down rebuilds them. The page never scrolls itself, and the hero build can be replayed.
-- Motion off and reduced motion present the complete page without construction effects.
-- Existing project, resume, contact, and open-source destinations remain reachable. The repository has no published blog posts, so no writing index appears in the new navigation.
-- The generated portrait is used in the hero with a working transparent cutout.
-- Production build and lint complete; desktop and mobile browser checks show no overflow or broken interactive controls.
+External demo availability, mail app delivery, and production hosting are not asserted by local checks.

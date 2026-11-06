@@ -34,6 +34,7 @@ import {
   SiTensorflow,
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
+import { siteConfig } from "@/data/siteConfig";
 
 export type TechIcon = ComponentType<{ className?: string }>;
 export type TechKey =
@@ -58,6 +59,13 @@ export interface Project {
   starsText?: string;
   backgroundImage?: string;
   hasPin: boolean;
+  category: string;
+  year: string;
+  role: string;
+  summary: string;
+  tools: string[];
+  outcomes: string[];
+  featured: boolean;
 }
 
 export const iconMap: Record<TechKey, TechIcon> = {
@@ -82,57 +90,35 @@ export const techNames: Record<TechKey, string> = {
   postgresql: "PostgreSQL", supabase: "Supabase", tensorflow: "TensorFlow", android: "Android",
 };
 
-export const projectsData: Project[] = [
-  {
-    slug: "geoloanlens",
-    title: "GeoLoanLens",
-    imageTitle: "SIH 2025 Grand Finals",
-    src: "/projects/geoloanlens-concept.jpg",
-    video: "",
-    description: "AI-driven loan verification platform with real-time geospatial tracking — SIH 2025 National Grand Finalist (Top 0.5%)",
-    tech: ["react", "ts", "tailwind", "supabase", "postgresql"],
-    github: "https://github.com/dark7462/geoloanlens",
-    live: "https://geoloanlens.vercel.app/",
-    backgroundImage: "/projects/geoloanlens-concept.jpg",
-    hasPin: true,
-  },
-  {
-    slug: "vibebench",
-    title: "VibeBench",
-    imageTitle: "AI Evaluation Platform",
-    src: "/projects/vibebench-concept.jpg",
-    video: "",
-    description: "A premium AI Coding Model evaluation platform that automates generation, sandbox execution, and metric scoring.",
-    tech: ["springboot", "mongodb", "redis", "docker", "java"],
-    github: "https://github.com/dark7462/VibeBench",
-    live: "https://vibe-bench-six.vercel.app/",
-    backgroundImage: "/projects/vibebench-concept.jpg",
-    hasPin: false,
-  },
-  {
-    slug: "gridcam",
-    title: "GridCam",
-    imageTitle: "AI Camera App",
-    src: "/projects/gridcam-concept.jpg",
-    video: "",
-    description: "AI-powered Android camera app that analyzes real-time scenes to suggest optimal photography composition grids.",
-    tech: ["java", "tensorflow", "android"],
-    github: "https://github.com/dark7462/GridCam",
-    live: "https://gridcam.app/",
-    backgroundImage: "/projects/gridcam-concept.jpg",
-    hasPin: false,
-  },
-  {
-    slug: "url-shortener",
-    title: "URL Shortener API",
-    imageTitle: "Scalable API",
-    src: "/projects/url-shortener-concept.jpg",
-    video: "",
-    description: "A Spring Boot URL shortener API with MongoDB Atlas persistence and Redis caching.",
-    tech: ["springboot", "redis", "mongodb", "docker", "java"],
-    github: "https://github.com/dark7462/url-shortner",
-    live: "",
-    backgroundImage: "/projects/url-shortener-concept.jpg",
-    hasPin: false,
-  },
-];
+const projectLabels: Record<string, string> = {
+  "url-shortener": "BACKEND API",
+  vibebench: "AI BENCHMARKING",
+  sherlock: "GRAPH INVESTIGATION",
+  gridcam: "CAMERA INTELLIGENCE",
+  geoloanlens: "LOAN VERIFICATION",
+};
+
+const techKeyByLabel = Object.fromEntries(Object.entries(techNames).map(([key, label]) => [label.toLowerCase(), key])) as Record<string, TechKey>;
+
+export const projectsData: Project[] = siteConfig.portfolio.projects.map((project) => ({
+  slug: project.id,
+  title: project.title,
+  imageTitle: projectLabels[project.id] ?? project.category,
+  src: project.coverImage,
+  video: project.videoUrl,
+  description: project.id === "geoloanlens"
+    ? "A team-built loan-verification platform with AI features and geospatial tracking, created for the Smart India Hackathon 2025 national grand finals."
+    : project.description,
+  tech: project.tools.map((label): TechItem => techKeyByLabel[label.toLowerCase()] ?? { label }),
+  github: project.sourceUrl,
+  live: project.liveUrl,
+  backgroundImage: project.coverImage || undefined,
+  hasPin: project.featured,
+  category: project.category,
+  year: project.year,
+  role: project.id === "geoloanlens" ? "Team contributor" : project.role,
+  summary: project.summary,
+  tools: project.tools,
+  outcomes: "responsibilitiesAndOutcomes" in project ? project.responsibilitiesAndOutcomes ?? [] : ["Smart India Hackathon 2025 National Grand Finalist."],
+  featured: siteConfig.portfolio.featuredProjectIds.includes(project.id),
+}));
