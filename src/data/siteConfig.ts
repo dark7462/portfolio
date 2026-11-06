@@ -11,7 +11,7 @@ export const siteConfig = {
     "headline": "BUILD THE THING. MAKE IT MATTER.",
     "intro": "Computer Science undergraduate building Java/Spring Boot services and AWS-hosted automation tools. Built a REST API supporting 1,000 requests/second and reduced manual model evaluation time by 60%.",
     "about": "I am pursuing a B.Tech in Computer Science (AI & Machine Learning) at Aditya University, with graduation expected in April 2028. My work spans backend services, asynchronous model evaluation, graph-based investigation tools, and on-device camera intelligence. I also serve as an OpenAI Campus Lead at Aditya University and have worked as an Unstop Campus Ambassador, helping students explore AI tools, hackathons, and career opportunities.",
-    "portrait": "/hero-anurag-editorial.png",
+    "portrait": "/hero-anurag-watch.png",
     "portraitAlt": "AI-generated editorial portrait of Anurag Nayak, based on his own photo",
     "resume": "/Anurag-Nayak-Resume.pdf",
     "resumePreview": "/Anurag-Nayak-Resume.png",
